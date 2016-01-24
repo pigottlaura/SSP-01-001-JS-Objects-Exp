@@ -154,3 +154,40 @@ personB.growOlder = function(){
 }
 personB.showAge();
 personB.growOlder();
+
+console.log("\n------ OBJECT CONSTRUCTOR FUNCTIONS ------");
+// All functions in JavaScript are actually objects, and therefore the Person function contains
+// more than just the function. It infact contains a property of the same name i.e. Person, which
+// contains the function. This means that this object can also hold other properties, along with
+// it's own function property. We can therefore use this method to create a template for that type
+// of object, and use the function to "construct" it i.e. in the below example, I am creating
+// a Person object constructor, which takes in two arguments (pName and pAge), and then uses these
+// parametres to assign values to the relevant properties. By creating an object in this way,
+// we can then reuse this constructor to create multiple people, who will all have the same properties
+// and methods (such as name and showAge()). Note - although these objects will all have the same
+// properties, their values can and will all be different i.e. they will have different states.
+// These objects can then have new properties added to them later on, as in the case of personD
+// below, where they now have a property of favBooks.
+var Person = function(pName, pAge)
+{
+    this.name = pName;
+    this.age = pAge;
+    this.showAge = function(){
+        console.log(this.name + " is " + this.age + " years old.");
+    };
+    this.Person = function()
+    {
+        console.log("Making new Person");
+    }
+}
+
+var personC = new Person("Marie", 27);
+personC.showAge();
+
+var personD = new Person("Barry", 24);
+personD.showAge();
+personD.favBooks = ["Harry Potter", "Lord of The Rings"];
+for(book in personD.favBooks)
+{
+    console.log("One of " + personD.name + "\'s favourite books is " + personD.favBooks[book]);
+}
